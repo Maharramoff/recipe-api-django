@@ -18,3 +18,7 @@ class ModelTests(TestCase):
         email = 'test@DEMO.AZ'
         user = get_user_model().objects.create_user(email, 'test123456')
         self.assertEqual(user.email, email.lower())
+
+    def test_if_new_user_email_valide(self):
+        with self.assertRaises(ValueError):
+            get_user_model().objects.create_user(None, 'test123456')
